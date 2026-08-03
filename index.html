@@ -1,0 +1,129 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="description" content="Eldersburn Lodge — a peaceful woodland holiday lodge in Highland Perthshire." />
+  <title>Eldersburn Lodge | Highland Escape</title>
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+  <header class="site-header">
+    <a class="brand" href="#home" aria-label="Eldersburn Lodge home">
+      <span class="brand-mark">EL</span>
+      <span><strong>Eldersburn Lodge</strong><small>Highland Perthshire</small></span>
+    </a>
+    <button class="menu-toggle" aria-label="Open navigation" aria-expanded="false">☰</button>
+    <nav class="nav" aria-label="Main navigation">
+      <a href="#about">The lodge</a>
+      <a href="#gallery">Gallery</a>
+      <a href="#availability">Availability</a>
+      <a class="nav-cta" href="#contact">Enquire</a>
+    </nav>
+  </header>
+
+  <main>
+    <section class="hero" id="home">
+      <img src="assets/image1.png" alt="Eldersburn Lodge surrounded by woodland" />
+      <div class="hero-overlay"></div>
+      <div class="hero-content">
+        <p class="eyebrow">A peaceful Scottish escape</p>
+        <h1>Slow down, breathe deeply and feel at home.</h1>
+        <p>A welcoming woodland lodge with beautiful interiors, mountain views and everything you need for a relaxing break.</p>
+        <div class="hero-actions">
+          <a class="button primary" href="#availability">Check availability</a>
+          <a class="button secondary" href="#gallery">Explore the lodge</a>
+        </div>
+      </div>
+    </section>
+
+    <section class="intro section" id="about">
+      <div>
+        <p class="eyebrow">Welcome to Eldersburn</p>
+        <h2>Your comfortable base for a Highland getaway.</h2>
+      </div>
+      <div class="intro-copy">
+        <p>Set among trees and rolling hills, Eldersburn Lodge combines a cosy, homely atmosphere with bright contemporary interiors. It is an inviting place to reconnect, unwind and explore the surrounding countryside.</p>
+        <div class="features">
+          <span>Woodland setting</span><span>Modern kitchen</span><span>Cosy living room</span><span>Two bathrooms</span>
+        </div>
+      </div>
+    </section>
+
+    <section class="feature-image section narrow">
+      <img src="assets/image2.png" alt="Balcony view from Eldersburn Lodge across the wooded hills" />
+      <div class="floating-card">
+        <p class="eyebrow">Naturally restorative</p>
+        <h3>Wake up to trees, hills and fresh Highland air.</h3>
+      </div>
+    </section>
+
+    <section class="section" id="gallery">
+      <div class="section-heading">
+        <div><p class="eyebrow">Inside the lodge</p><h2>Comfort in every corner.</h2></div>
+        <p>Bright, calm spaces designed for relaxed mornings, cosy evenings and memorable stays.</p>
+      </div>
+      <div class="gallery-grid">
+        <figure class="wide"><img src="assets/image5.png" alt="Modern lounge with fireplace and large windows" /><figcaption>Light-filled living room</figcaption></figure>
+        <figure><img src="assets/image4.png" alt="Modern fitted kitchen" /><figcaption>Fully fitted kitchen</figcaption></figure>
+        <figure><img src="assets/image6.png" alt="Comfortable double bedroom" /><figcaption>Comfortable double bedroom</figcaption></figure>
+        <figure><img src="assets/image8.png" alt="Twin bedroom" /><figcaption>Flexible twin room</figcaption></figure>
+        <figure><img src="assets/image7.png" alt="Modern shower room" /><figcaption>Contemporary shower room</figcaption></figure>
+        <figure class="wide"><img src="assets/image9.png" alt="Bathroom with bath and shower" /><figcaption>Family bathroom</figcaption></figure>
+      </div>
+    </section>
+
+    <section class="availability section" id="availability">
+      <div class="section-heading light">
+        <div><p class="eyebrow">Plan your stay</p><h2>Booking calendar</h2></div>
+        <p>Select your preferred dates, then send an enquiry. Dates shown are illustrative until your live booking system is connected.</p>
+      </div>
+      <div class="booking-panel">
+        <div class="calendar-card">
+          <div class="calendar-controls">
+            <button id="prevMonth" aria-label="Previous month">←</button>
+            <h3 id="monthTitle"></h3>
+            <button id="nextMonth" aria-label="Next month">→</button>
+          </div>
+          <div class="weekdays"><span>Mon</span><span>Tue</span><span>Wed</span><span>Thu</span><span>Fri</span><span>Sat</span><span>Sun</span></div>
+          <div id="calendar" class="calendar-grid" aria-live="polite"></div>
+          <div class="legend"><span><i class="available-dot"></i>Available</span><span><i class="booked-dot"></i>Booked</span><span><i class="selected-dot"></i>Selected</span></div>
+        </div>
+        <aside class="enquiry-summary">
+          <p class="eyebrow">Your dates</p>
+          <h3>Choose arrival and departure</h3>
+          <div class="date-summary"><div><small>Arrival</small><strong id="arrivalText">—</strong></div><div><small>Departure</small><strong id="departureText">—</strong></div></div>
+          <p class="muted">Your enquiry does not confirm a booking. We will reply with availability and pricing.</p>
+          <a class="button primary full" href="#contact" id="continueButton">Continue to enquiry</a>
+        </aside>
+      </div>
+    </section>
+
+    <section class="section contact" id="contact">
+      <div class="contact-copy">
+        <p class="eyebrow">Contact us</p>
+        <h2>Start planning your stay.</h2>
+        <p>Tell us your preferred dates and party size. We will get back to you with availability, pricing and any other details you need.</p>
+      </div>
+      <form id="contactForm" class="contact-form">
+        <label>Name<input name="name" required autocomplete="name" /></label>
+        <label>Email<input name="email" type="email" required autocomplete="email" /></label>
+        <div class="form-row">
+          <label>Arrival<input id="arrivalInput" name="arrival" type="date" /></label>
+          <label>Departure<input id="departureInput" name="departure" type="date" /></label>
+        </div>
+        <label>Number of guests<input name="guests" type="number" min="1" max="10" value="2" /></label>
+        <label>Message<textarea name="message" rows="5" placeholder="Anything else you would like us to know?"></textarea></label>
+        <button class="button primary" type="submit">Send enquiry</button>
+        <p id="formStatus" class="form-status" role="status"></p>
+      </form>
+    </section>
+  </main>
+
+  <footer>
+    <div class="brand footer-brand"><span class="brand-mark">EL</span><span><strong>Eldersburn Lodge</strong><small>Highland Perthshire</small></span></div>
+    <p>© <span id="year"></span> Eldersburn Lodge. All rights reserved.</p>
+  </footer>
+  <script src="script.js"></script>
+</body>
+</html>
