@@ -1,4 +1,4 @@
-/* Eldersburn Lodge website settings
+d/* Eldersburn Lodge website settings
    Update this file when prices or calendar details change. */
 window.ELDERSBURN_CONFIG = {
   // Paste the Outlook calendar HTML/embed URL here later.
