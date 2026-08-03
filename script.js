@@ -28,7 +28,17 @@ document.querySelector('#close-lightbox').addEventListener('click', () => lightb
 lightbox.addEventListener('click', event => { if (event.target === lightbox) lightbox.close(); });
 
 // Add confirmed bookings here later in YYYY-MM-DD format.
-const bookedDates = new Set([]);
+const bookedDates = new Set([
+  "2026-08-07",
+  "2026-08-08",
+  "2026-08-09",
+  "2026-08-10",
+"2026-08-14",
+"2026-08-15",
+"2026-08-16",
+"2026-08-17",
+]);
+
 let visibleMonth = new Date();
 visibleMonth.setDate(1);
 const title = document.querySelector('#calendar-title');
