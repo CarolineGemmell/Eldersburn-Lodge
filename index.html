@@ -1,0 +1,163 @@
+<!doctype html>
+<html lang="en-GB">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="Eldersburn Lodge — a peaceful woodland holiday lodge near Loch Tay and Killin, Scotland.">
+  <meta name="theme-color" content="#26362b">
+  <title>Eldersburn Lodge | Loch Tay</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600&family=Playfair+Display:wght@500;600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <header class="site-header" id="top">
+    <a class="brand" href="#top" aria-label="Eldersburn Lodge home">
+      <span class="brand-mark">E</span>
+      <span><strong>Eldersburn</strong><small>Lodge · Loch Tay</small></span>
+    </a>
+    <button class="menu-toggle" aria-expanded="false" aria-controls="site-nav">Menu</button>
+    <nav id="site-nav" aria-label="Main navigation">
+      <a href="#lodge">The lodge</a>
+      <a href="#gallery">Gallery</a>
+      <a href="#area">Explore</a>
+      <a href="#availability">Availability</a>
+      <a class="nav-cta" href="#contact">Enquire</a>
+    </nav>
+  </header>
+
+  <main>
+    <section class="hero" aria-labelledby="hero-title">
+      <img src="image1.png" alt="Eldersburn Lodge in its woodland setting" class="hero-image">
+      <div class="hero-shade"></div>
+      <div class="hero-content">
+        <p class="eyebrow">A quiet Highland escape</p>
+        <h1 id="hero-title">Slow down beside<br>Loch Tay.</h1>
+        <p class="hero-copy">A warm, peaceful lodge surrounded by woodland, hills and some of Scotland’s most beautiful scenery.</p>
+        <div class="hero-actions">
+          <a class="button button-primary" href="#availability">Check availability</a>
+          <a class="button button-ghost" href="#gallery">View the lodge</a>
+        </div>
+      </div>
+      <a class="scroll-cue" href="#lodge" aria-label="Scroll to lodge details">Scroll</a>
+    </section>
+
+    <section class="intro section" id="lodge">
+      <div class="section-heading reveal">
+        <p class="eyebrow dark">Welcome to Eldersburn</p>
+        <h2>Comfort, calm and a view worth waking up for.</h2>
+      </div>
+      <div class="intro-grid">
+        <div class="intro-copy reveal">
+          <p class="lead">Set among mature trees near Loch Tay, Eldersburn Lodge is an inviting base for relaxed days, scenic walks and memorable time together.</p>
+          <p>Inside, you’ll find bright, contemporary spaces, comfortable bedrooms, a well-equipped kitchen and a cosy living room for quiet evenings after exploring the surrounding countryside.</p>
+          <div class="feature-list" aria-label="Lodge highlights">
+            <span>Woodland setting</span>
+            <span>Modern kitchen</span>
+            <span>Comfortable bedrooms</span>
+            <span>Private balcony</span>
+            <span>Loch and hill views</span>
+            <span>Peaceful location</span>
+          </div>
+        </div>
+        <figure class="feature-image reveal">
+          <img src="image2.png" alt="Eldersburn Lodge balcony overlooking the wooded landscape">
+          <figcaption>Space to breathe, surrounded by nature.</figcaption>
+        </figure>
+      </div>
+    </section>
+
+    <section class="gallery-section" id="gallery">
+      <div class="gallery-heading section reveal">
+        <div>
+          <p class="eyebrow light">Inside the lodge</p>
+          <h2>A warm welcome in every room.</h2>
+        </div>
+        <p>Tap any photograph to view it full screen.</p>
+      </div>
+      <div class="gallery-grid">
+        <button class="gallery-item gallery-wide" data-image="image5.png" aria-label="Open living room photograph"><img src="image5.png" alt="Cosy contemporary living room with stone feature wall"></button>
+        <button class="gallery-item" data-image="image4.png" aria-label="Open kitchen photograph"><img src="image4.png" alt="Bright modern fitted kitchen"></button>
+        <button class="gallery-item" data-image="image6.png" aria-label="Open double bedroom photograph"><img src="image6.png" alt="Comfortable double bedroom"></button>
+        <button class="gallery-item" data-image="image8.png" aria-label="Open twin bedroom photograph"><img src="image8.png" alt="Comfortable twin bedroom"></button>
+        <button class="gallery-item" data-image="image7.png" aria-label="Open shower room photograph"><img src="image7.png" alt="Modern shower room"></button>
+        <button class="gallery-item gallery-wide" data-image="image9.png" aria-label="Open bathroom photograph"><img src="image9.png" alt="Modern family bathroom"></button>
+      </div>
+    </section>
+
+    <section class="area section" id="area">
+      <div class="area-image reveal">
+        <img src="image10.png" alt="Aerial view of the lodge site and surrounding Highland landscape">
+      </div>
+      <div class="area-copy reveal">
+        <p class="eyebrow dark">Explore Loch Tay</p>
+        <h2>Wild landscapes, welcoming villages.</h2>
+        <p>From the Falls of Dochart in Killin to lochside walks, mountain views and peaceful forest trails, Eldersburn Lodge places you close to the best of Highland Perthshire.</p>
+        <div class="nearby-list">
+          <div><strong>Killin</strong><span>Village, cafés and the Falls of Dochart</span></div>
+          <div><strong>Loch Tay</strong><span>Waterside scenery and outdoor adventures</span></div>
+          <div><strong>Ben Lawers</strong><span>Iconic walks and panoramic mountain views</span></div>
+        </div>
+      </div>
+    </section>
+
+    <section class="availability section" id="availability">
+      <div class="section-heading centred reveal">
+        <p class="eyebrow dark">Plan your stay</p>
+        <h2>Availability</h2>
+        <p>Browse the calendar, then send an enquiry for the dates that suit you.</p>
+      </div>
+      <div class="calendar-card reveal">
+        <div class="calendar-toolbar">
+          <button id="prev-month" aria-label="Previous month">←</button>
+          <h3 id="calendar-title" aria-live="polite"></h3>
+          <button id="next-month" aria-label="Next month">→</button>
+        </div>
+        <div class="calendar-weekdays" aria-hidden="true">
+          <span>Mon</span><span>Tue</span><span>Wed</span><span>Thu</span><span>Fri</span><span>Sat</span><span>Sun</span>
+        </div>
+        <div id="calendar-grid" class="calendar-grid" role="grid" aria-label="Availability calendar"></div>
+        <div class="calendar-key"><span><i class="available-dot"></i>Available</span><span><i class="booked-dot"></i>Booked</span></div>
+        <p class="calendar-note">The calendar is ready to connect to your live bookings. Until that connection is completed, please confirm dates by enquiry.</p>
+      </div>
+    </section>
+
+    <section class="contact section" id="contact">
+      <div class="contact-panel reveal">
+        <div class="contact-copy">
+          <p class="eyebrow light">Make an enquiry</p>
+          <h2>Start planning your stay.</h2>
+          <p>Tell us your preferred dates and a little about your group. The email delivery will be connected in the next step.</p>
+        </div>
+        <form id="enquiry-form" class="enquiry-form">
+          <div class="field-row">
+            <label>Full name<input type="text" name="name" required autocomplete="name"></label>
+            <label>Email address<input type="email" name="email" required autocomplete="email"></label>
+          </div>
+          <div class="field-row">
+            <label>Arrival date<input type="date" name="arrival" required></label>
+            <label>Departure date<input type="date" name="departure" required></label>
+          </div>
+          <label>Message<textarea name="message" rows="4" placeholder="Number of guests and anything else you would like us to know"></textarea></label>
+          <button class="button button-light" type="submit">Send enquiry</button>
+          <p id="form-status" class="form-status" aria-live="polite"></p>
+        </form>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    <a class="brand footer-brand" href="#top"><span class="brand-mark">E</span><span><strong>Eldersburn</strong><small>Lodge · Loch Tay</small></span></a>
+    <p>Peaceful stays in Highland Perthshire.</p>
+    <p class="copyright">© <span id="year"></span> Eldersburn Lodge</p>
+  </footer>
+
+  <dialog id="lightbox" class="lightbox">
+    <button id="close-lightbox" aria-label="Close photograph">×</button>
+    <img id="lightbox-image" src="" alt="Expanded lodge photograph">
+  </dialog>
+
+  <script src="script.js"></script>
+</body>
+</html>
