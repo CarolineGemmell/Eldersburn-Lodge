@@ -27,18 +27,38 @@ document.querySelectorAll('.gallery-item').forEach(button => {
 document.querySelector('#close-lightbox').addEventListener('click', () => lightbox.close());
 lightbox.addEventListener('click', event => { if (event.target === lightbox) lightbox.close(); });
 
-// Add confirmed bookings here later in YYYY-MM-DD format.
-const bookedDates = new Set([
-  "2026-08-07",
-  "2026-08-08",
-  "2026-08-09",
-  "2026-08-10",
-  "2026-08-14",
-  "2026-08-15",
-  "2026-08-16",
-  "2026-08-17",
-]);
+const config = window.ELDERSBURN_CONFIG || {};
 
+function renderPrices() {
+  const priceGrid = document.querySelector('#price-grid');
+  const priceNotes = document.querySelector('#price-notes');
+  const prices = Array.isArray(config.prices) ? config.prices : [];
+  priceGrid.innerHTML = prices.map((item, index) => `
+    <article class="price-card ${index === 1 ? 'featured' : ''}">
+      ${index === 1 ? '<span class="price-badge">Popular</span>' : ''}
+      <p class="price-season">${item.season}</p>
+      <p class="price-dates">${item.dates}</p>
+      <dl>
+        ${(item.stays || []).map(stay => `<div><dt>${stay.label}</dt><dd>${stay.price}</dd></div>`).join('')}
+      </dl>
+      <a class="price-link" href="#contact">Enquire about a stay →</a>
+    </article>
+  `).join('');
+  const notes = Array.isArray(config.priceNotes) ? config.priceNotes : [];
+  priceNotes.innerHTML = notes.length ? `<strong>Please note</strong><ul>${notes.map(note => `<li>${note}</li>`).join('')}</ul>` : '';
+}
+renderPrices();
+
+const outlookUrl = (config.outlookCalendarEmbedUrl || '').trim();
+const outlookWrap = document.querySelector('#outlook-calendar-wrap');
+const manualWrap = document.querySelector('#manual-calendar-wrap');
+if (outlookUrl) {
+  document.querySelector('#outlook-calendar').src = outlookUrl;
+  outlookWrap.hidden = false;
+  manualWrap.hidden = true;
+}
+
+const bookedDates = new Set(Array.isArray(config.bookedDates) ? config.bookedDates : []);
 let visibleMonth = new Date();
 visibleMonth.setDate(1);
 const title = document.querySelector('#calendar-title');
@@ -48,6 +68,7 @@ function isoDate(year, month, day) {
   return `${year}-${String(month + 1).padStart(2, '0')}-${String(day).padStart(2, '0')}`;
 }
 function renderCalendar() {
+  if (!grid) return;
   grid.innerHTML = '';
   const year = visibleMonth.getFullYear();
   const month = visibleMonth.getMonth();
@@ -82,11 +103,11 @@ function renderCalendar() {
     grid.appendChild(cell);
   }
 }
-document.querySelector('#prev-month').addEventListener('click', () => { visibleMonth.setMonth(visibleMonth.getMonth() - 1); renderCalendar(); });
-document.querySelector('#next-month').addEventListener('click', () => { visibleMonth.setMonth(visibleMonth.getMonth() + 1); renderCalendar(); });
+document.querySelector('#prev-month')?.addEventListener('click', () => { visibleMonth.setMonth(visibleMonth.getMonth() - 1); renderCalendar(); });
+document.querySelector('#next-month')?.addEventListener('click', () => { visibleMonth.setMonth(visibleMonth.getMonth() + 1); renderCalendar(); });
 renderCalendar();
 
 document.querySelector('#enquiry-form').addEventListener('submit', event => {
   event.preventDefault();
-  document.querySelector('#form-status').textContent = 'The form is designed and ready. We will connect email delivery in the next step.';
+  document.querySelector('#form-status').textContent = 'The form is ready. Email delivery will be connected in the next step.';
 });

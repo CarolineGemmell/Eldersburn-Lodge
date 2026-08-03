@@ -22,6 +22,7 @@
       <a href="#lodge">The lodge</a>
       <a href="#gallery">Gallery</a>
       <a href="#area">Explore</a>
+      <a href="#prices">Prices</a>
       <a href="#availability">Availability</a>
       <a class="nav-cta" href="#contact">Enquire</a>
     </nav>
@@ -102,6 +103,17 @@
       </div>
     </section>
 
+
+    <section class="prices section" id="prices">
+      <div class="section-heading centred reveal">
+        <p class="eyebrow dark">Stay your way</p>
+        <h2>Prices</h2>
+        <p>Choose from seasonal 4-night and 7-night stays. Final availability and the total booking price are confirmed when you enquire.</p>
+      </div>
+      <div id="price-grid" class="price-grid reveal" aria-live="polite"></div>
+      <div id="price-notes" class="price-notes reveal"></div>
+    </section>
+
     <section class="availability section" id="availability">
       <div class="section-heading centred reveal">
         <p class="eyebrow dark">Plan your stay</p>
@@ -109,6 +121,10 @@
         <p>Browse the calendar, then send an enquiry for the dates that suit you.</p>
       </div>
       <div class="calendar-card reveal">
+        <div id="outlook-calendar-wrap" class="outlook-calendar-wrap" hidden>
+          <iframe id="outlook-calendar" title="Eldersburn Lodge booking calendar" loading="lazy"></iframe>
+        </div>
+        <div id="manual-calendar-wrap">
         <div class="calendar-toolbar">
           <button id="prev-month" aria-label="Previous month">←</button>
           <h3 id="calendar-title" aria-live="polite"></h3>
@@ -119,7 +135,8 @@
         </div>
         <div id="calendar-grid" class="calendar-grid" role="grid" aria-label="Availability calendar"></div>
         <div class="calendar-key"><span><i class="available-dot"></i>Available</span><span><i class="booked-dot"></i>Booked</span></div>
-        <p class="calendar-note">The calendar is ready to connect to your live bookings. Until that connection is completed, please confirm dates by enquiry.</p>
+        <p class="calendar-note">Availability is shown as a guide. Please confirm your dates by enquiry before making travel arrangements.</p>
+        </div>
       </div>
     </section>
 
@@ -158,6 +175,7 @@
     <img id="lightbox-image" src="" alt="Expanded lodge photograph">
   </dialog>
 
+  <script src="site-config.js"></script>
   <script src="script.js"></script>
 </body>
 </html>
