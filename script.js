@@ -151,8 +151,4 @@ document.querySelector('#today-month')?.addEventListener('click', () => {
 window.addEventListener('resize', renderCalendar);
 renderCalendar();
 
-const enquiryForm = document.querySelector('#enquiry-form');
-enquiryForm?.addEventListener('submit', event => {
-  event.preventDefault();
-  document.querySelector('#form-status').textContent = 'The form is ready. Email delivery will be connected to your Hotmail address in the next step';
-});
+
