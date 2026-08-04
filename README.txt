@@ -14,3 +14,10 @@ Update the prices and notes in site-config.js.
 
 ENQUIRIES
 The form is visual only until it is connected to an email form service.
+
+OWNER CALENDAR
+--------------
+After upload, open:
+https://carolinegemmell.github.io/Eldersburn-Lodge/admin.html
+
+The owner page edits site-config.js through the GitHub API. You need a fine-grained GitHub personal access token restricted to the Eldersburn-Lodge repository with Contents read/write permission. The token is entered on the owner page and is not included in the website files.

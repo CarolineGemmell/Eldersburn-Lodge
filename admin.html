@@ -1,0 +1,57 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="robots" content="noindex,nofollow">
+  <title>Eldersburn Lodge Owner Calendar</title>
+  <link rel="stylesheet" href="admin.css">
+</head>
+<body>
+  <main class="admin-shell">
+    <header>
+      <p class="eyebrow">Eldersburn Lodge</p>
+      <h1>Owner Calendar</h1>
+      <p>Select booked nights, then save. The public website will update after GitHub Pages redeploys.</p>
+    </header>
+
+    <section class="panel setup-panel" aria-labelledby="setup-title">
+      <h2 id="setup-title">Connect to GitHub</h2>
+      <div class="form-grid">
+        <label>GitHub username<input id="owner" value="carolinegemmell" autocomplete="username"></label>
+        <label>Repository<input id="repo" value="Eldersburn-Lodge"></label>
+        <label>Branch<input id="branch" value="main"></label>
+        <label>Settings file<input id="path" value="site-config.js"></label>
+        <label class="token-field">Fine-grained GitHub token<input id="token" type="password" placeholder="Paste token here" autocomplete="off"></label>
+      </div>
+      <div class="button-row">
+        <button id="load" class="primary">Load Current Bookings</button>
+        <button id="forget" class="secondary">Forget Token</button>
+      </div>
+      <p class="small">The token is stored only in this browser when you choose to remember it. Use a fine-grained token restricted to this repository with <strong>Contents: Read and write</strong>.</p>
+    </section>
+
+    <section class="panel calendar-panel" aria-labelledby="calendar-title">
+      <div class="calendar-heading">
+        <div>
+          <h2 id="calendar-title">Booked Nights</h2>
+          <p>Click a date to mark it booked or available</p>
+        </div>
+        <div class="calendar-nav">
+          <button id="prev" class="secondary" aria-label="Previous month">‹</button>
+          <button id="today" class="secondary">Today</button>
+          <button id="next" class="secondary" aria-label="Next month">›</button>
+        </div>
+      </div>
+      <div class="legend"><span><i class="available-dot"></i>Available</span><span><i class="booked-dot"></i>Booked</span></div>
+      <div id="months" class="months" aria-live="polite"></div>
+      <div class="summary-row">
+        <span id="count">0 booked nights selected</span>
+        <button id="save" class="primary" disabled>Save to Website</button>
+      </div>
+      <p id="status" class="status" role="status"></p>
+    </section>
+  </main>
+  <script src="admin.js"></script>
+</body>
+</html>
