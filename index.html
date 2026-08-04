@@ -183,7 +183,26 @@
           <h2>Start Planning Your Stay</h2>
           <p>Tell us your preferred dates and a little about your group. Email delivery can be connected to your Hotmail address in the next step</p>
         </div>
-        <form id="enquiry-form" class="enquiry-form">
+        <form
+  id="enquiry-form"
+  class="enquiry-form"
+  action="https://api.web3forms.com/submit"
+  method="POST"
+>
+  <input
+    type="hidden"
+    name="access_key"
+    value="c713b355-9722-47a0-9a11-5f184ff45fe0"
+  >
+  <input
+    type="hidden"
+    name="subject"
+    value="New enquiry from Eldersburn Lodge website"
+  >
+  <input
+    type="hidden"
+    name="from_name"
+    value="Eldersburn Lodge"
           <div class="field-row">
             <label>Full name<input type="text" name="name" required autocomplete="name"></label>
             <label>Email address<input type="email" name="email" required autocomplete="email"></label>
