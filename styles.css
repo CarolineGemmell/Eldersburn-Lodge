@@ -203,3 +203,29 @@ footer { display: grid; grid-template-columns: 1fr auto auto; align-items: cente
   .brand small { display: none; }
   .brand-mark { width: 2.2rem; height: 2.2rem; }
 }
+
+
+/* Version 5 availability calendar */
+.calendar-shell{max-width:1120px;margin:0 auto;background:#fff;border:1px solid rgba(39,56,45,.12);border-radius:26px;box-shadow:0 22px 60px rgba(27,43,32,.12);overflow:hidden}
+.calendar-topline{display:flex;align-items:center;justify-content:space-between;gap:1rem;padding:1.4rem 1.6rem;background:linear-gradient(135deg,#25382d,#3f5a47);color:#fff}
+.calendar-topline strong{display:block;font-family:"Playfair Display",serif;font-size:1.45rem;margin-top:.2rem}
+.calendar-kicker{font-size:.75rem;letter-spacing:.14em;text-transform:uppercase;color:#dfe9df}
+.calendar-nav{display:flex;gap:.45rem;align-items:center}
+.calendar-nav button{border:1px solid rgba(255,255,255,.28);background:rgba(255,255,255,.08);color:#fff;min-width:42px;height:42px;border-radius:999px;font:inherit;cursor:pointer;padding:0 .85rem;transition:.2s ease}
+.calendar-nav button:hover{background:#fff;color:#25382d}
+.calendar-months{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:1px;background:#e8e4dc}
+.month-card{background:#fff;padding:1.5rem}
+.month-card h3{text-align:center;font-family:"Playfair Display",serif;font-size:1.45rem;color:#27382d;margin:0 0 1.2rem}
+.month-weekdays,.month-grid{display:grid;grid-template-columns:repeat(7,1fr);gap:.35rem}
+.month-weekdays{margin-bottom:.45rem;color:#7a7f78;font-size:.73rem;font-weight:700;text-align:center}
+.day{position:relative;display:grid;place-items:center;aspect-ratio:1;border-radius:10px;background:#f4f3ee;color:#2e3c33;font-weight:600;font-size:.9rem;border:1px solid transparent}
+.day.blank{background:transparent;border:0}
+.day.booked{background:#8e5147;color:#fff;text-decoration:line-through;text-decoration-thickness:1px}
+.day.changeover:not(.booked)::after{content:"";position:absolute;bottom:5px;width:5px;height:5px;border-radius:50%;background:#c79a4a}
+.day.today{border-color:#27382d;box-shadow:inset 0 0 0 1px #27382d}
+.calendar-key{display:flex;justify-content:center;flex-wrap:wrap;gap:1.25rem;padding:1rem 1.5rem .45rem;background:#fbfaf7;color:#586159;font-size:.85rem}
+.calendar-key span{display:flex;align-items:center;gap:.45rem}
+.calendar-key i{width:11px;height:11px;border-radius:50%;display:inline-block}
+.available-dot{background:#e2eadf;border:1px solid #789071}.booked-dot{background:#8e5147}.changeover-dot{background:#c79a4a}
+.calendar-note{text-align:center;padding:.35rem 1.5rem 1.25rem;margin:0;background:#fbfaf7;color:#6a716b;font-size:.84rem}
+@media(max-width:760px){.calendar-topline{align-items:flex-start;flex-direction:column}.calendar-months{grid-template-columns:1fr}.month-card{padding:1rem}.day{border-radius:8px}.calendar-nav{width:100%;justify-content:space-between}}

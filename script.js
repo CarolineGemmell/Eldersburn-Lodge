@@ -75,75 +75,80 @@ function renderPrices() {
 }
 renderPrices();
 
-const outlookUrl = (config.outlookCalendarEmbedUrl || '').trim();
-const outlookWrap = document.querySelector('#outlook-calendar-wrap');
-const manualWrap = document.querySelector('#manual-calendar-wrap');
-if (outlookUrl) {
-  const outlookFrame = document.querySelector('#outlook-calendar');
-  const outlookLink = document.querySelector('#open-outlook-calendar');
-  outlookFrame.src = outlookUrl;
-  outlookLink.href = outlookUrl;
-  outlookWrap.hidden = false;
-  manualWrap.hidden = true;
-}
-
 const bookedDates = new Set(Array.isArray(config.bookedDates) ? config.bookedDates : []);
-let visibleMonth = new Date();
-visibleMonth.setDate(1);
-const title = document.querySelector('#calendar-title');
-const grid = document.querySelector('#calendar-grid');
+let firstVisibleMonth = new Date();
+firstVisibleMonth.setDate(1);
+const monthsHost = document.querySelector('#calendar-months');
 
 function isoDate(year, month, day) {
   return `${year}-${String(month + 1).padStart(2, '0')}-${String(day).padStart(2, '0')}`;
 }
-function renderCalendar() {
-  if (!grid || outlookUrl) return;
-  grid.innerHTML = '';
-  const year = visibleMonth.getFullYear();
-  const month = visibleMonth.getMonth();
-  title.textContent = visibleMonth.toLocaleDateString('en-GB', { month: 'long', year: 'numeric' });
+
+function buildMonth(date) {
+  const year = date.getFullYear();
+  const month = date.getMonth();
+  const title = date.toLocaleDateString('en-GB', { month: 'long', year: 'numeric' });
   const firstWeekday = (new Date(year, month, 1).getDay() + 6) % 7;
   const daysThisMonth = new Date(year, month + 1, 0).getDate();
-  const daysPrevMonth = new Date(year, month, 0).getDate();
   const today = new Date();
-  for (let i = 0; i < 42; i++) {
-    const cell = document.createElement('div');
-    cell.className = 'calendar-day';
-    let displayDay;
-    let cellYear = year;
-    let cellMonth = month;
-    if (i < firstWeekday) {
-      displayDay = daysPrevMonth - firstWeekday + i + 1;
-      cellMonth--;
-      if (cellMonth < 0) { cellMonth = 11; cellYear--; }
-      cell.classList.add('muted');
-    } else if (i >= firstWeekday + daysThisMonth) {
-      displayDay = i - firstWeekday - daysThisMonth + 1;
-      cellMonth++;
-      if (cellMonth > 11) { cellMonth = 0; cellYear++; }
-      cell.classList.add('muted');
-    } else {
-      displayDay = i - firstWeekday + 1;
-    }
-    const key = isoDate(cellYear, cellMonth, displayDay);
-    const date = new Date(cellYear, cellMonth, displayDay);
-    cell.textContent = displayDay;
+  const section = document.createElement('section');
+  section.className = 'month-card';
+  section.innerHTML = `
+    <h3>${title}</h3>
+    <div class="month-weekdays" aria-hidden="true">
+      <span>M</span><span>T</span><span>W</span><span>T</span><span>F</span><span>S</span><span>S</span>
+    </div>
+    <div class="month-grid" role="grid" aria-label="${title} availability"></div>`;
+  const grid = section.querySelector('.month-grid');
+  for (let i = 0; i < firstWeekday; i++) {
+    const blank = document.createElement('span');
+    blank.className = 'day blank';
+    blank.setAttribute('aria-hidden', 'true');
+    grid.appendChild(blank);
+  }
+  for (let day = 1; day <= daysThisMonth; day++) {
+    const key = isoDate(year, month, day);
+    const current = new Date(year, month, day);
+    const isBooked = bookedDates.has(key);
+    const isMonday = current.getDay() === 1;
+    const isToday = year === today.getFullYear() && month === today.getMonth() && day === today.getDate();
+    const cell = document.createElement('span');
+    cell.className = 'day';
+    cell.textContent = day;
     cell.setAttribute('role', 'gridcell');
-    cell.setAttribute('aria-label', `${key}${bookedDates.has(key) ? ', booked' : ', available'}`);
-    if (bookedDates.has(key)) cell.classList.add('booked');
-    if (date.getDay() === 1) cell.classList.add('changeover');
-    if (cellYear === today.getFullYear() && cellMonth === today.getMonth() && displayDay === today.getDate()) cell.classList.add('today');
+    cell.setAttribute('aria-label', `${current.toLocaleDateString('en-GB', { day: 'numeric', month: 'long', year: 'numeric' })}, ${isBooked ? 'booked' : 'available'}${isMonday ? ', Monday changeover' : ''}`);
+    if (isBooked) cell.classList.add('booked');
+    if (isMonday) cell.classList.add('changeover');
+    if (isToday) cell.classList.add('today');
     grid.appendChild(cell);
   }
+  return section;
 }
+
+function renderCalendar() {
+  if (!monthsHost) return;
+  monthsHost.innerHTML = '';
+  const numberOfMonths = window.matchMedia('(max-width: 760px)').matches ? 1 : 2;
+  for (let i = 0; i < numberOfMonths; i++) {
+    const date = new Date(firstVisibleMonth.getFullYear(), firstVisibleMonth.getMonth() + i, 1);
+    monthsHost.appendChild(buildMonth(date));
+  }
+}
+
 document.querySelector('#prev-month')?.addEventListener('click', () => {
-  visibleMonth.setMonth(visibleMonth.getMonth() - 1);
+  firstVisibleMonth.setMonth(firstVisibleMonth.getMonth() - 1);
   renderCalendar();
 });
 document.querySelector('#next-month')?.addEventListener('click', () => {
-  visibleMonth.setMonth(visibleMonth.getMonth() + 1);
+  firstVisibleMonth.setMonth(firstVisibleMonth.getMonth() + 1);
   renderCalendar();
 });
+document.querySelector('#today-month')?.addEventListener('click', () => {
+  firstVisibleMonth = new Date();
+  firstVisibleMonth.setDate(1);
+  renderCalendar();
+});
+window.addEventListener('resize', renderCalendar);
 renderCalendar();
 
 const enquiryForm = document.querySelector('#enquiry-form');

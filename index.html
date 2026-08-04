@@ -107,34 +107,27 @@
       <div class="section-heading centred reveal">
         <p class="eyebrow dark">Plan your stay</p>
         <h2>Availability</h2>
-        <p>The calendar below is linked to the Eldersburn Lodge Outlook calendar and is updated whenever a confirmed booking is added</p>
+        <p>Browse upcoming availability below. Booked nights are clearly marked and Monday changeover days are highlighted</p>
       </div>
-      <div class="calendar-card reveal">
-        <div id="outlook-calendar-wrap" class="outlook-calendar-wrap" hidden>
-          <div class="calendar-embed-header">
-            <div>
-              <strong>Live Booking Calendar</strong>
-              <span>Booked dates are shown as busy</span>
-            </div>
-            <a id="open-outlook-calendar" class="small-link" href="#" target="_blank" rel="noopener">Open Full Calendar</a>
+      <div class="calendar-shell reveal">
+        <div class="calendar-topline">
+          <div>
+            <span class="calendar-kicker">Live availability guide</span>
+            <strong>Choose your preferred dates</strong>
           </div>
-          <iframe id="outlook-calendar" title="Eldersburn Lodge booking calendar" loading="lazy" referrerpolicy="no-referrer"></iframe>
-          <p class="calendar-note">Only availability is displayed. Guest names and private booking details are not shown</p>
+          <div class="calendar-nav">
+            <button id="prev-month" type="button" aria-label="Show previous months">←</button>
+            <button id="today-month" type="button">Today</button>
+            <button id="next-month" type="button" aria-label="Show next months">→</button>
+          </div>
         </div>
-
-        <div id="manual-calendar-wrap">
-          <div class="calendar-toolbar">
-            <button id="prev-month" aria-label="Previous month">←</button>
-            <h3 id="calendar-title" aria-live="polite"></h3>
-            <button id="next-month" aria-label="Next month">→</button>
-          </div>
-          <div class="calendar-weekdays" aria-hidden="true">
-            <span>Mon</span><span>Tue</span><span>Wed</span><span>Thu</span><span>Fri</span><span>Sat</span><span>Sun</span>
-          </div>
-          <div id="calendar-grid" class="calendar-grid" role="grid" aria-label="Availability calendar"></div>
-          <div class="calendar-key"><span><i class="available-dot"></i>Available</span><span><i class="booked-dot"></i>Booked</span><span><i class="changeover-dot"></i>Monday changeover</span></div>
-          <p class="calendar-note">Availability is shown as a guide. Please confirm your dates by enquiry before making travel arrangements</p>
+        <div id="calendar-months" class="calendar-months" aria-live="polite"></div>
+        <div class="calendar-key">
+          <span><i class="available-dot"></i>Available</span>
+          <span><i class="booked-dot"></i>Booked</span>
+          <span><i class="changeover-dot"></i>Monday changeover</span>
         </div>
+        <p class="calendar-note">Availability is a guide and is confirmed when you enquire. The departure date can remain available for a same-day changeover</p>
       </div>
       <div class="availability-cta reveal">
         <a class="button button-primary" href="#contact">Enquire About Your Dates</a>
