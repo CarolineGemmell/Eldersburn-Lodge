@@ -1,11 +1,8 @@
 /* Eldersburn Lodge website settings
-   Update this file when prices or calendar details change. */
+   Update this file when prices or calendar details change */
 window.ELDERSBURN_CONFIG = {
-  // Paste the Outlook calendar HTML/embed URL here later.
-  // Leave blank to keep using the website's manual availability calendar.
-  outlookCalendarEmbedUrl: "",
+  outlookCalendarEmbedUrl: "https://outlook.live.com/owa/calendar/a67e3740-42f4-4f41-a824-fac723d87e4e/df94e8e6-bcf9-4515-b81a-0c09740ede9d/cid-E32883F8B1297C26/index.html",
 
-  // Manual blocked dates used until Outlook Calendar is connected.
   bookedDates: [
     "2026-08-07",
     "2026-08-08",
