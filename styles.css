@@ -179,3 +179,27 @@ footer { display: grid; grid-template-columns: 1fr auto auto; align-items: cente
   .contact-panel { gap: 2rem; padding: 2rem 1.2rem; }
   .scroll-cue { display: none; }
 }
+
+/* Version 4 refinements */
+.site-header.scrolled {
+  background: rgba(23,35,28,.94);
+  box-shadow: 0 10px 35px rgba(8,18,12,.18);
+  backdrop-filter: blur(14px);
+}
+.review-coming {
+  max-width: 760px;
+  margin: 0 auto;
+  padding: 2.5rem;
+  text-align: center;
+  border: 1px solid var(--line);
+  border-radius: var(--radius);
+  background: var(--cream);
+  color: var(--muted);
+}
+.button:hover, .nav-cta:hover, .small-link:hover { transform: translateY(-1px); }
+.button { transition: transform .2s ease, opacity .2s ease; }
+.hero-content { text-shadow: 0 2px 20px rgba(0,0,0,.2); }
+@media (max-width: 640px) {
+  .brand small { display: none; }
+  .brand-mark { width: 2.2rem; height: 2.2rem; }
+}

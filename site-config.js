@@ -17,7 +17,7 @@ window.ELDERSBURN_CONFIG = {
   prices: [
     {
       season: "Low season",
-      dates: "January, February, March & December",
+      dates: "January, February, March and December",
       stays: [
         { label: "4 nights", price: "£1,000" },
         { label: "7 nights", price: "£1,750" }
@@ -25,7 +25,7 @@ window.ELDERSBURN_CONFIG = {
     },
     {
       season: "Mid season",
-      dates: "April, May, October & November",
+      dates: "April, May, October and November",
       stays: [
         { label: "4 nights", price: "£1,200" },
         { label: "7 nights", price: "£2,100" }
@@ -33,14 +33,14 @@ window.ELDERSBURN_CONFIG = {
     },
     {
       season: "High season",
-      dates: "June, July, August & September",
+      dates: "June, July, August and September",
       stays: [
         { label: "4 nights", price: "£1,400" },
         { label: "7 nights", price: "£2,450" }
       ]
     },
     {
-      season: "Christmas & New Year",
+      season: "Christmas and New Year",
       dates: "Festive period",
       stays: [
         { label: "Festive stay", price: "£3,000" }

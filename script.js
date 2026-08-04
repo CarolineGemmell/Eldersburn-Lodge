@@ -1,3 +1,8 @@
+
+const header = document.querySelector('.site-header');
+const updateHeader = () => header?.classList.toggle('scrolled', window.scrollY > 40);
+window.addEventListener('scroll', updateHeader, { passive: true });
+updateHeader();
 const menuButton = document.querySelector('.menu-toggle');
 const nav = document.querySelector('#site-nav');
 menuButton?.addEventListener('click', () => {
