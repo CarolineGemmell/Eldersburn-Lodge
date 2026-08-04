@@ -194,32 +194,114 @@
     name="access_key"
     value="c713b355-9722-47a0-9a11-5f184ff45fe0"
   >
+
   <input
     type="hidden"
     name="subject"
     value="New enquiry from Eldersburn Lodge website"
   >
+
   <input
     type="hidden"
     name="from_name"
     value="Eldersburn Lodge"
-    >
-          <div class="field-row">
-            <label>Full name<input type="text" name="name" required autocomplete="name"></label>
-            <label>Email address<input type="email" name="email" required autocomplete="email"></label>
-          </div>
-          <div class="field-row">
-            <label>Telephone<input type="tel" name="phone" autocomplete="tel"></label>
-            <label>Number of guests<input type="number" name="guests" min="1" max="10"></label>
-          </div>
-          <div class="field-row">
-            <label>Arrival date<input type="date" name="arrival" required></label>
-            <label>Departure date<input type="date" name="departure" required></label>
-          </div>
-          <label>Message<textarea name="message" rows="4" placeholder="Tell us anything else you would like us to know"></textarea></label>
-          <button class="button button-light" type="submit">Send Enquiry</button>
-          <p id="form-status" class="form-status" aria-live="polite"></p>
-        </form>
+  >
+
+  <input
+    type="hidden"
+    name="redirect"
+    value="https://carolinegemmell.github.io/Eldersburn-Lodge/?enquiry=sent#contact"
+  >
+
+  <!-- Spam protection: leave hidden and empty -->
+  <input
+    type="checkbox"
+    name="botcheck"
+    class="hidden"
+    style="display:none"
+    tabindex="-1"
+    autocomplete="off"
+  >
+
+  <div class="field-row">
+    <label>
+      Full name
+      <input
+        type="text"
+        name="name"
+        required
+        autocomplete="name"
+      >
+    </label>
+
+    <label>
+      Email address
+      <input
+        type="email"
+        name="email"
+        required
+        autocomplete="email"
+      >
+    </label>
+  </div>
+
+  <div class="field-row">
+    <label>
+      Telephone
+      <input
+        type="tel"
+        name="phone"
+        autocomplete="tel"
+      >
+    </label>
+
+    <label>
+      Number of guests
+      <input
+        type="number"
+        name="guests"
+        min="1"
+        max="10"
+        required
+      >
+    </label>
+  </div>
+
+  <div class="field-row">
+    <label>
+      Arrival date
+      <input
+        type="date"
+        name="arrival"
+        required
+      >
+    </label>
+
+    <label>
+      Departure date
+      <input
+        type="date"
+        name="departure"
+        required
+      >
+    </label>
+  </div>
+
+  <label>
+    Message
+    <textarea
+      name="message"
+      rows="4"
+      placeholder="Tell us anything else you would like us to know"
+    ></textarea>
+  </label>
+
+  <button class="button button-light" type="submit">
+    Send Enquiry
+  </button>
+
+  <p id="form-status" class="form-status" aria-live="polite"></p>
+</form>
       </div>
     </section>
   </main>
