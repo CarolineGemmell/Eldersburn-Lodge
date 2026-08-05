@@ -129,7 +129,7 @@ window.ELDERSBURN_CONFIG = {
       "stays": [
         {
           "label": "Festive stay",
-          "price": "£3,000"
+          "price": "£3,500"
         }
       ]
     }
