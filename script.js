@@ -152,3 +152,29 @@ window.addEventListener('resize', renderCalendar);
 renderCalendar();
 
 
+
+function escapeHtml(value) {
+  return String(value ?? '').replace(/[&<>'"]/g, character => ({
+    '&': '&amp;', '<': '&lt;', '>': '&gt;', "'": '&#39;', '"': '&quot;'
+  })[character]);
+}
+
+function renderReviews() {
+  const host = document.querySelector('#review-grid');
+  if (!host) return;
+  const reviews = Array.isArray(config.reviews) ? config.reviews : [];
+  if (!reviews.length) {
+    host.innerHTML = '<div class="review-coming"><p>Guest reviews will be added here as stays are completed</p></div>';
+    return;
+  }
+  host.innerHTML = reviews.map(review => {
+    const rating = Math.max(1, Math.min(5, Number(review.rating) || 5));
+    return `
+      <article class="review-card">
+        <div class="review-stars" aria-label="${rating} out of 5 stars">${'★'.repeat(rating)}${'☆'.repeat(5-rating)}</div>
+        <blockquote>“${escapeHtml(review.text)}”</blockquote>
+        <p class="review-author"><strong>${escapeHtml(review.name)}</strong>${review.location ? `<span>${escapeHtml(review.location)}</span>` : ''}</p>
+      </article>`;
+  }).join('');
+}
+renderReviews();
