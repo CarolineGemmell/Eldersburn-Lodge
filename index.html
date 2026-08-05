@@ -107,7 +107,7 @@
       <div class="section-heading centred reveal">
         <p class="eyebrow dark">Plan your stay</p>
         <h2>Availability</h2>
-        <p>Browse upcoming availability below. Booked nights are clearly marked and Monday changeover days are highlighted</p>
+        <p>Bookings are released automatically up to six months in advance. Dates beyond that window are shown as not yet released</p>
       </div>
       <div class="calendar-shell reveal">
         <div class="calendar-topline">
@@ -124,10 +124,11 @@
         <div id="calendar-months" class="calendar-months" aria-live="polite"></div>
         <div class="calendar-key">
           <span><i class="available-dot"></i>Available</span>
-          <span><i class="booked-dot"></i>Booked</span>
+          <span><i class="booked-dot"></i>Unavailable</span>
+          <span><i class="unreleased-dot"></i>Not yet released</span>
           <span><i class="changeover-dot"></i>Monday changeover</span>
         </div>
-        <p class="calendar-note">Availability is a guide and is confirmed when you enquire. The departure date can remain available for a same-day changeover</p>
+        <p id="booking-window-note" class="calendar-note">Bookings are currently open for stays up to six months in advance. Availability is confirmed when you enquire</p>
       </div>
       <div class="availability-cta reveal">
         <a class="button button-primary" href="#contact">Enquire About Your Dates</a>
@@ -239,7 +240,7 @@
     <button id="next-photo" class="lightbox-nav next" aria-label="Next photograph">›</button>
   </dialog>
 
-  <script src="site-config.js?v=7.0"></script>
-  <script src="script.js?v=7.0"></script>
+  <script src="site-config.js?v=7.1"></script>
+  <script src="script.js?v=7.1"></script>
 </body>
 </html>

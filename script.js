@@ -76,6 +76,23 @@ function renderPrices() {
 renderPrices();
 
 const bookedDates = new Set(Array.isArray(config.bookedDates) ? config.bookedDates : []);
+const bookingWindowMonths = Number.isFinite(Number(config.bookingWindowMonths))
+  ? Math.max(1, Number(config.bookingWindowMonths))
+  : 6;
+
+function startOfToday() {
+  const now = new Date();
+  return new Date(now.getFullYear(), now.getMonth(), now.getDate());
+}
+
+function bookingReleaseEnd() {
+  const today = startOfToday();
+  return new Date(today.getFullYear(), today.getMonth() + bookingWindowMonths, today.getDate());
+}
+
+function formatReleaseDate(date) {
+  return date.toLocaleDateString('en-GB', { day: 'numeric', month: 'long', year: 'numeric' });
+}
 let firstVisibleMonth = new Date();
 firstVisibleMonth.setDate(1);
 const monthsHost = document.querySelector('#calendar-months');
@@ -112,12 +129,19 @@ function buildMonth(date) {
     const isBooked = bookedDates.has(key);
     const isMonday = current.getDay() === 1;
     const isToday = year === today.getFullYear() && month === today.getMonth() && day === today.getDate();
+    const isPast = current < startOfToday();
+    const isUnreleased = current > bookingReleaseEnd();
+    const publicStatus = isUnreleased ? 'not yet released' : (isPast || isBooked ? 'unavailable' : 'available');
     const cell = document.createElement('span');
     cell.className = 'day';
     cell.textContent = day;
     cell.setAttribute('role', 'gridcell');
-    cell.setAttribute('aria-label', `${current.toLocaleDateString('en-GB', { day: 'numeric', month: 'long', year: 'numeric' })}, ${isBooked ? 'booked' : 'available'}${isMonday ? ', Monday changeover' : ''}`);
-    if (isBooked) cell.classList.add('booked');
+    cell.setAttribute('aria-label', `${current.toLocaleDateString('en-GB', { day: 'numeric', month: 'long', year: 'numeric' })}, ${publicStatus}${isMonday ? ', Monday changeover' : ''}`);
+    if (isBooked || isPast) cell.classList.add('booked');
+    if (isUnreleased) {
+      cell.classList.remove('booked');
+      cell.classList.add('unreleased');
+    }
     if (isMonday) cell.classList.add('changeover');
     if (isToday) cell.classList.add('today');
     grid.appendChild(cell);
@@ -151,6 +175,10 @@ document.querySelector('#today-month')?.addEventListener('click', () => {
 window.addEventListener('resize', renderCalendar);
 renderCalendar();
 
+const bookingWindowNote = document.querySelector('#booking-window-note');
+if (bookingWindowNote) {
+  bookingWindowNote.textContent = `Bookings are currently open for stays up to ${formatReleaseDate(bookingReleaseEnd())}. Dates after this are not yet released. Availability is confirmed when you enquire`;
+}
 
 function escapeHtml(value) {
   return String(value ?? '').replace(/[&<>"']/g, character => ({

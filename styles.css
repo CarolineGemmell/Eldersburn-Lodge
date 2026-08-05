@@ -260,3 +260,7 @@ footer { display: grid; grid-template-columns: 1fr auto auto; align-items: cente
 .review-card p { margin: 0; }
 .review-card p span { display:block; opacity:.7; font-size:.9rem; margin-top:.2rem; }
 .review-stars { color:#9a7b45; letter-spacing:.12em; }
+
+/* Version 7.1 booking release window */
+.day.unreleased{background:#e5e4e0;color:#8a8d89;text-decoration:none;border:1px solid #d3d1cb;box-shadow:none}
+.unreleased-dot{background:#e5e4e0;border:1px solid #c7c5bf}
