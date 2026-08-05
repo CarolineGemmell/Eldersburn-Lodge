@@ -152,29 +152,33 @@ window.addEventListener('resize', renderCalendar);
 renderCalendar();
 
 
-
 function escapeHtml(value) {
-  return String(value ?? '').replace(/[&<>'"]/g, character => ({
-    '&': '&amp;', '<': '&lt;', '>': '&gt;', "'": '&#39;', '"': '&quot;'
-  })[character]);
+  return String(value ?? '').replace(/[&<>"']/g, character => ({
+    '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;'
+  }[character]));
 }
 
 function renderReviews() {
-  const host = document.querySelector('#review-grid');
+  const host = document.querySelector('.review-coming');
   if (!host) return;
   const reviews = Array.isArray(config.reviews) ? config.reviews : [];
   if (!reviews.length) {
-    host.innerHTML = '<div class="review-coming"><p>Guest reviews will be added here as stays are completed</p></div>';
+    host.innerHTML = '<p>Guest reviews will be added here as stays are completed</p>';
     return;
   }
-  host.innerHTML = reviews.map(review => {
-    const rating = Math.max(1, Math.min(5, Number(review.rating) || 5));
-    return `
-      <article class="review-card">
-        <div class="review-stars" aria-label="${rating} out of 5 stars">${'★'.repeat(rating)}${'☆'.repeat(5-rating)}</div>
-        <blockquote>“${escapeHtml(review.text)}”</blockquote>
-        <p class="review-author"><strong>${escapeHtml(review.name)}</strong>${review.location ? `<span>${escapeHtml(review.location)}</span>` : ''}</p>
-      </article>`;
-  }).join('');
+  host.classList.add('review-grid');
+  host.innerHTML = reviews.map(review => `
+    <article class="review-card">
+      <div class="review-stars" aria-label="${Number(review.rating) || 5} out of 5 stars">${'★'.repeat(Number(review.rating) || 5)}</div>
+      <blockquote>“${escapeHtml(review.text)}”</blockquote>
+      <p><strong>${escapeHtml(review.name)}</strong>${review.location ? `<span>${escapeHtml(review.location)}</span>` : ''}</p>
+    </article>
+  `).join('');
 }
 renderReviews();
+
+const params = new URLSearchParams(window.location.search);
+if (params.get('enquiry') === 'sent') {
+  const status = document.querySelector('#form-status');
+  if (status) status.textContent = 'Thank you. Your enquiry has been sent successfully';
+}

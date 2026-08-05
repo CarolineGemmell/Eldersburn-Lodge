@@ -230,14 +230,33 @@ footer { display: grid; grid-template-columns: 1fr auto auto; align-items: cente
 .calendar-note{text-align:center;padding:.35rem 1.5rem 1.25rem;margin:0;background:#fbfaf7;color:#6a716b;font-size:.84rem}
 @media(max-width:760px){.calendar-topline{align-items:flex-start;flex-direction:column}.calendar-months{grid-template-columns:1fr}.month-card{padding:1rem}.day{border-radius:8px}.calendar-nav{width:100%;justify-content:space-between}}
 
-
-/* Guest review cards */
-.review-grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:1.25rem;margin-top:2rem}
-.review-card,.review-coming{background:#fff;border:1px solid rgba(39,56,45,.12);border-radius:18px;padding:1.5rem;box-shadow:0 12px 32px rgba(39,56,45,.08)}
-.review-stars{color:#9a7b45;letter-spacing:.12em;font-size:1.1rem;margin-bottom:1rem}
-.review-card blockquote{margin:0;color:#33463a;font-size:1.02rem;line-height:1.75}
-.review-author{margin:1.25rem 0 0;display:flex;flex-direction:column;gap:.2rem}
-.review-author span{font-size:.9rem;color:#6d776f}
-.review-coming{text-align:center;grid-column:1/-1}
-@media(max-width:900px){.review-grid{grid-template-columns:1fr 1fr}}
-@media(max-width:620px){.review-grid{grid-template-columns:1fr}}
+/* Version 7 additions */
+.enquiry-form select {
+  width: 100%;
+  margin-top: .45rem;
+  padding: .9rem 1rem;
+  border: 1px solid rgba(255,255,255,.32);
+  border-radius: .45rem;
+  background: rgba(255,255,255,.09);
+  color: #fff;
+  font: inherit;
+}
+.enquiry-form select option { color: #26352c; background: #fff; }
+.review-coming.review-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit,minmax(240px,1fr));
+  gap: 1.25rem;
+  background: transparent;
+  padding: 0;
+}
+.review-card {
+  background: #fff;
+  border-radius: 1rem;
+  padding: 1.5rem;
+  box-shadow: 0 10px 30px rgba(30,45,36,.1);
+  text-align: left;
+}
+.review-card blockquote { margin: .75rem 0 1rem; font-family: "Playfair Display",serif; font-size: 1.1rem; line-height: 1.55; }
+.review-card p { margin: 0; }
+.review-card p span { display:block; opacity:.7; font-size:.9rem; margin-top:.2rem; }
+.review-stars { color:#9a7b45; letter-spacing:.12em; }

@@ -1,0 +1,76 @@
+<!doctype html>
+<html lang="en-GB">
+<head>
+<meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Eldersburn Lodge Manager</title>
+<style>
+:root{--green:#354c3d;--cream:#f5f1e8;--ink:#25332a;--gold:#aa8a50;--red:#8b4a45;--line:#d8d3c8}
+*{box-sizing:border-box}body{margin:0;font-family:Arial,sans-serif;background:var(--cream);color:var(--ink)}
+header{background:var(--green);color:#fff;padding:22px}.wrap{max-width:1050px;margin:auto;padding:20px}
+h1,h2,h3{font-family:Georgia,serif;margin-top:0}.intro{background:#fff7d9;border-left:5px solid var(--gold);padding:14px 16px;margin-bottom:18px}
+.tabs{display:flex;gap:8px;flex-wrap:wrap;margin-bottom:18px}.tab{border:0;border-radius:999px;padding:11px 17px;background:#dce2dd;color:var(--ink);font-weight:700;cursor:pointer}.tab.active{background:var(--green);color:#fff}
+.panel{display:none}.panel.active{display:block}.card{background:#fff;padding:20px;border-radius:14px;margin-bottom:18px;box-shadow:0 6px 22px #00000012}
+button,.button{border:0;border-radius:8px;padding:11px 15px;background:var(--green);color:#fff;font-weight:700;cursor:pointer}.secondary{background:#6d756f}.danger{background:var(--red)}
+input,textarea,select{width:100%;padding:10px 11px;border:1px solid var(--line);border-radius:8px;font:inherit;background:#fff}label{display:block;font-weight:700;margin-bottom:12px}label span{display:block;font-weight:400;font-size:.88rem;margin-top:4px;opacity:.7}
+.row{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:14px}.actions{display:flex;gap:8px;flex-wrap:wrap}.status{font-weight:700;margin-top:12px}.calendar-head{display:flex;justify-content:space-between;align-items:center;gap:10px}.week,.days{display:grid;grid-template-columns:repeat(7,1fr);gap:5px}.week span{text-align:center;font-weight:700;padding:8px}.day{min-height:50px;border:1px solid var(--line);border-radius:8px;background:#fff;color:var(--ink)}.day.blank{visibility:hidden}.day.booked{background:var(--red);color:#fff;border-color:var(--red)}.day.monday{box-shadow:inset 0 0 0 2px var(--gold)}
+.review{border:1px solid var(--line);border-radius:10px;padding:14px;margin-top:10px}.review .stars{color:var(--gold)}
+.steps li{margin:.55rem 0}.small{font-size:.9rem;opacity:.75}.savebox{background:#eef4ef;border:1px solid #cad8cd}
+@media(max-width:700px){.row{grid-template-columns:1fr}.wrap{padding:12px}.week,.days{gap:3px}.day{min-height:44px;padding:5px}}
+</style>
+</head>
+<body>
+<header><div class="wrap"><h1>Eldersburn Lodge Manager</h1><p>Open, change, save, then upload one file</p></div></header>
+<div class="wrap">
+<div class="intro"><strong>Important:</strong> Do not try to open <em>site-config.js</em> by double-clicking it. Select it using the button below.</div>
+<div class="card">
+  <h2>1. Load your current settings</h2>
+  <input id="file" type="file" accept=".js,text/javascript">
+  <div class="actions" style="margin-top:12px"><button id="load">Load selected file</button><button id="useDefaults" class="secondary">Start with current built-in settings</button></div>
+  <p id="loadStatus" class="status"></p>
+</div>
+<div class="tabs">
+<button class="tab active" data-panel="bookings">Bookings</button>
+<button class="tab" data-panel="prices">Prices</button>
+<button class="tab" data-panel="reviews">Reviews</button>
+<button class="tab" data-panel="save">Save and upload</button>
+</div>
+<section id="bookings" class="panel active">
+<div class="card">
+<div class="calendar-head"><button id="prev">← Previous</button><h2 id="month"></h2><button id="next">Next →</button></div>
+<div class="week"><span>M</span><span>T</span><span>W</span><span>T</span><span>F</span><span>S</span><span>S</span></div><div id="days" class="days"></div>
+<p><strong>Click a date to mark it booked. Click it again to make it available.</strong></p><p id="dateCount" class="small"></p>
+</div></section>
+<section id="prices" class="panel"><div class="card"><h2>Prices</h2>
+<div class="row"><label>Low season — 4 nights<input id="low4"></label><label>Low season — 7 nights<input id="low7"></label></div>
+<div class="row"><label>Mid season — 4 nights<input id="mid4"></label><label>Mid season — 7 nights<input id="mid7"></label></div>
+<div class="row"><label>High season — 4 nights<input id="high4"></label><label>High season — 7 nights<input id="high7"></label></div>
+<label>Christmas and New Year<input id="festive"></label>
+<h3>Booking terms</h3><div class="row"><label>Minimum stay<input id="minimum"></label><label>Cleaning charge<input id="cleaning"></label><label>Security deposit<input id="deposit"></label><label>Pet rule<input id="pets"></label><label>Changeover day<input id="changeover"></label></div>
+</div></section>
+<section id="reviews" class="panel"><div class="card"><h2>Add or edit a review</h2>
+<div class="row"><label>Guest name<input id="reviewName"></label><label>Location<input id="reviewLocation"></label></div>
+<label>Rating<select id="reviewRating"><option value="5">5 stars</option><option value="4">4 stars</option><option value="3">3 stars</option><option value="2">2 stars</option><option value="1">1 star</option></select></label>
+<label>Review<textarea id="reviewText" rows="5"></textarea></label><div class="actions"><button id="saveReview">Add review</button><button id="cancelReview" class="secondary" hidden>Cancel edit</button></div><p id="reviewStatus" class="status"></p>
+<div id="reviewList"></div></div></section>
+<section id="save" class="panel"><div class="card savebox"><h2>2. Download your updated file</h2><p>This creates one file called <strong>site-config.js</strong>.</p><button id="download">Download site-config.js</button><p id="downloadStatus" class="status"></p></div>
+<div class="card"><h2>3. Upload it to GitHub</h2><ol class="steps"><li>Open the Eldersburn-Lodge repository</li><li>Choose <strong>Add file → Upload files</strong></li><li>Upload the new <strong>site-config.js</strong></li><li>Commit directly to the main branch</li><li>Wait for the green Pages tick</li><li>Refresh the live website. Use <strong>Ctrl + Shift + R</strong> only if the old version is still showing</li></ol></div></section>
+</div>
+<script>
+const defaults={bookedDates:["2026-08-07","2026-08-08","2026-08-09","2026-08-10","2026-08-14","2026-08-15","2026-08-16","2026-08-17","2026-08-19","2026-08-20","2026-08-21","2026-08-22","2026-08-23","2026-08-28","2026-08-29","2026-08-30","2026-08-31","2026-09-04","2026-09-05","2026-09-06","2026-09-07","2026-09-11","2026-09-12","2026-09-13","2026-09-14","2026-09-15","2026-09-18","2026-09-19","2026-09-20","2026-09-25","2026-09-26","2026-09-27","2026-09-28"],prices:[{season:"Low season",dates:"January, February, March and December",stays:[{label:"4 nights",price:"£1,000"},{label:"7 nights",price:"£1,750"}]},{season:"Mid season",dates:"April, May, October and November",stays:[{label:"4 nights",price:"£1,200"},{label:"7 nights",price:"£2,100"}]},{season:"High season",dates:"June, July, August and September",stays:[{label:"4 nights",price:"£1,400"},{label:"7 nights",price:"£2,450"}]},{season:"Christmas and New Year",dates:"Festive period",stays:[{label:"Festive stay",price:"£3,000"}]}],priceNotes:["Minimum stay: 4 nights","Cleaning charge: £100 per booking","Refundable security deposit: £200","No pets","Standard changeover day: Monday","Christmas and New Year dates and stay duration are confirmed when you enquire"],reviews:[]};
+let config=JSON.parse(JSON.stringify(defaults)),booked=new Set(defaults.bookedDates),reviews=[],month=new Date(),editing=-1;month.setDate(1);
+const $=s=>document.querySelector(s),esc=s=>String(s||'').replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c])),pad=n=>String(n).padStart(2,'0'),iso=(y,m,d)=>`${y}-${pad(m+1)}-${pad(d)}`;
+document.querySelectorAll('.tab').forEach(b=>b.onclick=()=>{document.querySelectorAll('.tab').forEach(x=>x.classList.toggle('active',x===b));document.querySelectorAll('.panel').forEach(x=>x.classList.toggle('active',x.id===b.dataset.panel))});
+function getPrice(season,label){return config.prices?.find(x=>x.season===season)?.stays?.find(x=>x.label===label)?.price||''}function note(prefix){return config.priceNotes?.find(x=>x.startsWith(prefix))?.slice(prefix.length).trim()||''}
+function populate(){booked=new Set(config.bookedDates||[]);reviews=Array.isArray(config.reviews)?config.reviews.map(x=>({...x})):[];$('#low4').value=getPrice('Low season','4 nights');$('#low7').value=getPrice('Low season','7 nights');$('#mid4').value=getPrice('Mid season','4 nights');$('#mid7').value=getPrice('Mid season','7 nights');$('#high4').value=getPrice('High season','4 nights');$('#high7').value=getPrice('High season','7 nights');$('#festive').value=getPrice('Christmas and New Year','Festive stay');$('#minimum').value=note('Minimum stay:');$('#cleaning').value=note('Cleaning charge:');$('#deposit').value=note('Refundable security deposit:');$('#pets').value=config.priceNotes?.find(x=>/pet/i.test(x))||'No pets';$('#changeover').value=note('Standard changeover day:');renderCalendar();renderReviews()}
+function renderCalendar(){const y=month.getFullYear(),m=month.getMonth();$('#month').textContent=month.toLocaleDateString('en-GB',{month:'long',year:'numeric'});const h=$('#days');h.innerHTML='';const start=(new Date(y,m,1).getDay()+6)%7;for(let i=0;i<start;i++){const b=document.createElement('button');b.className='day blank';h.appendChild(b)}for(let d=1;d<=new Date(y,m+1,0).getDate();d++){const key=iso(y,m,d),date=new Date(y,m,d),b=document.createElement('button');b.type='button';b.className='day';b.textContent=d;if(booked.has(key))b.classList.add('booked');if(date.getDay()===1)b.classList.add('monday');b.onclick=()=>{booked.has(key)?booked.delete(key):booked.add(key);renderCalendar()};h.appendChild(b)}$('#dateCount').textContent=`${booked.size} booked dates selected`}
+$('#prev').onclick=()=>{month.setMonth(month.getMonth()-1);renderCalendar()};$('#next').onclick=()=>{month.setMonth(month.getMonth()+1);renderCalendar()};
+$('#load').onclick=async()=>{const f=$('#file').files[0];if(!f){$('#loadStatus').textContent='Choose site-config.js first';return}try{const text=await f.text(),box={};new Function('window',text)(box);if(!box.ELDERSBURN_CONFIG)throw Error();config=box.ELDERSBURN_CONFIG;populate();$('#loadStatus').textContent='Settings loaded successfully'}catch(e){$('#loadStatus').textContent='That file could not be loaded. Please choose site-config.js'}};
+$('#useDefaults').onclick=()=>{config=JSON.parse(JSON.stringify(defaults));populate();$('#loadStatus').textContent='Built-in settings loaded'};
+function renderReviews(){const h=$('#reviewList');h.innerHTML=reviews.length?reviews.map((r,i)=>`<div class="review"><strong>${esc(r.name)}</strong>${r.location?' · '+esc(r.location):''}<div class="stars">${'★'.repeat(Number(r.rating)||5)}</div><p>${esc(r.text)}</p><div class="actions"><button data-edit="${i}">Edit</button><button class="danger" data-delete="${i}">Delete</button></div></div>`).join(''):'<p>No reviews added yet</p>';h.querySelectorAll('[data-edit]').forEach(b=>b.onclick=()=>editReview(+b.dataset.edit));h.querySelectorAll('[data-delete]').forEach(b=>b.onclick=()=>{if(confirm('Delete this review?')){reviews.splice(+b.dataset.delete,1);renderReviews()}})}
+function clearReview(){editing=-1;$('#reviewName').value='';$('#reviewLocation').value='';$('#reviewRating').value='5';$('#reviewText').value='';$('#saveReview').textContent='Add review';$('#cancelReview').hidden=true}function editReview(i){editing=i;const r=reviews[i];$('#reviewName').value=r.name||'';$('#reviewLocation').value=r.location||'';$('#reviewRating').value=r.rating||5;$('#reviewText').value=r.text||'';$('#saveReview').textContent='Save review';$('#cancelReview').hidden=false}
+$('#saveReview').onclick=()=>{const r={name:$('#reviewName').value.trim(),location:$('#reviewLocation').value.trim(),rating:+$('#reviewRating').value,text:$('#reviewText').value.trim()};if(!r.name||!r.text){$('#reviewStatus').textContent='Enter the guest name and review';return}editing>=0?reviews[editing]=r:reviews.push(r);$('#reviewStatus').textContent='Review saved';clearReview();renderReviews()};$('#cancelReview').onclick=clearReview;
+function val(id){return $('#'+id).value.trim()}function output(){return{bookedDates:[...booked].sort(),prices:[{season:'Low season',dates:'January, February, March and December',stays:[{label:'4 nights',price:val('low4')},{label:'7 nights',price:val('low7')}]},{season:'Mid season',dates:'April, May, October and November',stays:[{label:'4 nights',price:val('mid4')},{label:'7 nights',price:val('mid7')}]},{season:'High season',dates:'June, July, August and September',stays:[{label:'4 nights',price:val('high4')},{label:'7 nights',price:val('high7')}]},{season:'Christmas and New Year',dates:'Festive period',stays:[{label:'Festive stay',price:val('festive')}]}],priceNotes:[`Minimum stay: ${val('minimum')}`,`Cleaning charge: ${val('cleaning')}`,`Refundable security deposit: ${val('deposit')}`,val('pets'),`Standard changeover day: ${val('changeover')}`,'Christmas and New Year dates and stay duration are confirmed when you enquire'],reviews}}
+$('#download').onclick=()=>{const text='/* Eldersburn Lodge website settings — generated by the Manager */\nwindow.ELDERSBURN_CONFIG = '+JSON.stringify(output(),null,2)+';\n',blob=new Blob([text],{type:'text/javascript'}),a=document.createElement('a');a.href=URL.createObjectURL(blob);a.download='site-config.js';a.click();setTimeout(()=>URL.revokeObjectURL(a.href),1000);$('#downloadStatus').textContent='site-config.js downloaded'};
+populate();
+</script>
+</body></html>
