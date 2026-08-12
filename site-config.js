@@ -34,53 +34,7 @@ window.ELDERSBURN_CONFIG = {
     "2026-09-25",
     "2026-09-26",
     "2026-09-27",
-    "2026-09-28",
-    "2026-10-09",
-    "2026-10-10",
-    "2026-10-11",
-    "2026-10-12",
-    "2026-10-15",
-    "2026-10-16",
-    "2026-10-17",
-    "2026-10-18",
-    "2026-10-19",
-    "2026-10-23",
-    "2026-10-24",
-    "2026-10-25",
-    "2026-10-26",
-    "2026-11-12",
-    "2026-11-13",
-    "2026-11-14",
-    "2026-11-15",
-    "2026-11-16",
-    "2026-12-17",
-    "2026-12-18",
-    "2026-12-19",
-    "2026-12-20",
-    "2026-12-21",
-    "2026-12-22",
-    "2026-12-23",
-    "2026-12-24",
-    "2026-12-25",
-    "2026-12-26",
-    "2026-12-27",
-    "2026-12-28",
-    "2026-12-29",
-    "2026-12-30",
-    "2026-12-31",
-    "2027-01-01",
-    "2027-01-02",
-    "2027-01-03",
-    "2027-01-04",
-    "2027-01-05",
-    "2027-02-15",
-    "2027-02-16",
-    "2027-02-17",
-    "2027-02-18",
-    "2027-03-15",
-    "2027-03-16",
-    "2027-03-17",
-    "2027-03-18"
+    "2026-09-28"
   ],
   "prices": [
     {
@@ -139,17 +93,11 @@ window.ELDERSBURN_CONFIG = {
   "priceNotes": [
     "Minimum stay: 4 nights",
     "Cleaning charge: £100 per booking",
+    "Hot tub: £75 for 4 nights / £100 for 7 nights",
     "Refundable security deposit: £200",
     "No pets",
     "Standard changeover day: Monday",
     "Christmas and New Year dates and stay duration are confirmed when you enquire"
   ],
-  "reviews": [
-    {
-      "name": "Angie & John",
-      "location": "Dalkeith",
-      "rating": 5,
-      "text": "Had a great stay at the lodge, it was clean, tidy and well equipped. I would highly recommend. We will be back x"
-    }
-  ]
+  "reviews": []
 };
