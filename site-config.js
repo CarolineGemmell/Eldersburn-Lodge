@@ -144,5 +144,12 @@ window.ELDERSBURN_CONFIG = {
     "Standard changeover day: Monday",
     "Christmas and New Year dates and stay duration are confirmed when you enquire"
   ],
-  "reviews": []
+  "reviews": [
+    {
+      "name": "Angie",
+      "location": "Brady",
+      "rating": 5,
+      "text": "Had a great stay at the lodge. Clean, Tidy and well equiped. Highly recommend."
+    }
+  ]
 };
